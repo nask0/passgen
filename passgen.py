@@ -76,8 +76,11 @@ if args:
 					char_len = sys.argv[3]
 					result = ''.join([random.choice(char_set) for _ in range(int(char_len))])
 					print result
+				except (IndexError):
+					print(IndexError, "Make sure you've added your character map and length")
+					exit() 
 				except (ValueError):
-					print('ValueError: sample larger than population')
+					print(ValueError, 'ValueError: sample larger than population')
 					exit()
 				except (KeyboardInterrupt):
 					exit()
