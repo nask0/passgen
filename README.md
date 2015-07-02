@@ -18,6 +18,6 @@ argument switches are as followed
 <br>
 -lU1 lowercase + uppercase ascii + digits
 <br>
--C [char] [length](WIP) custom character set + length
+-C [char] [length] custom character set + length
 
 This application will be updated with new features as needed.
