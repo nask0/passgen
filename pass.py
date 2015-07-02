@@ -1,4 +1,4 @@
-#passgen#
+#Passgen 0.3#
 import sys, random, string
 
 def lowercase():
@@ -50,7 +50,7 @@ def uppercase():
 		except (KeyboardInterrupt):
 			exit()
 def arglist():
-	print 'options: -l lowercase, -lU lower and uppercase, -l1 lower and numerals, -U upper ascii, -U1 upper and numerals, -lU1 lower, upper, and numerals, --help this list'
+	print 'options: -l lowercase, -lU lower and uppercase, -l1 lower and numerals, -U upper ascii, -U1 upper and numerals, -lU1 lower, upper, and numerals, -C [char] [num] custom character set and length, --help this list'
 
 args = sys.argv[1:]
 if args:
@@ -69,5 +69,17 @@ if args:
 			uppercase()
 		elif arg == '--help':
 			arglist()
+		elif arg == '-C':
+			while True:
+				try:
+					char_set = sys.argv[2:]
+					char_len = sys.argv[3:]
+					result = ''.join(random.sample(char_set*len(char_set), char_len))
+					print result
+				except (ValueError):
+					print('ValueError: sample larger than population')
+					exit()
+				except (KeyboardInterrupt):
+					exit()
 else:
 	arglist()
