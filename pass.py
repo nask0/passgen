@@ -1,33 +1,63 @@
-import random, string, time, math, os, sys
+#passgen#
+import sys, random, string
 
-keysdone = 0
-totalkey = math.pow(62, 8)
-fixedkey = format(totalkey, '.0f')
-key = "5c4GDxv4"
-result = ""
-keysasec = 0
-passlist = "pass.txt"
-fp = open(passlist, 'wb')
-start = time.time()
-while key != result:
-        try:
-                char_set = string.digits + string.ascii_uppercase + string.ascii_lowercase + string.digits
-                #char_set = string.digits + string.ascii_lowercase
-                result = ''.join(random.sample(char_set*6, 8))
-                end = time.time()
-                curtime = end - start
-                fixedtime = format(curtime, '.0f')
-                keysleft = int(fixedkey) - int(keysdone)
-                print "Key: %s Generation: %s Time Elapsed: %s Possible Keys: %s" % (result, keysdone, fixedtime, keysleft)
-                if result == key or keysleft == 0:
-                        print "%s = %s" % (result, key)
-                        print "Keys generated: %s" % keysdone
-                        exit()
-                else:
-                        fp.write(result + "\n")
-                        keysdone += 1
-        except (KeyboardInterrupt, SystemExit):
-                print "\n"
-                print "Current key: %s Keys generated: %s Total time ran: %s" % (result, keysdone, fixedtime)
-                fp.close()
-                exit()
+def lowercase():
+	while True:
+		try:
+			char_set = string.ascii_lowercase
+			result = ''.join(random.sample(char_set*6, 8))
+			print result
+		except (KeyboardInterrupt):
+			exit()
+def lowerupper():
+	while True:
+		try:
+			char_set = string.ascii_lowercase + string.ascii_uppercase
+			result = ''.join(random.sample(char_set*6, 8))
+			print result
+		except (KeyboardInterrupt):
+			exit()
+def lowernum():
+	while True:
+		try:
+			char_set = string.ascii_lowercase + string.digits
+			result = ''.join(random.sample(char_set*6, 8))
+			print result
+		except (KeyboardInterrupt):
+			exit()
+def uppernum():
+	while True:
+		try:
+			char_set = string.ascii_uppercase + string.digits
+			result = ''.join(random.sample(char_set*6, 8))
+			print result
+		except (KeyboardInterrupt):
+			exit()
+def loweruppernum():
+	while True:
+		try:
+			char_set = string.ascii_uppercase + string.ascii_lowercase + string.digits
+			result = ''.join(random.sample(char_set*6, 8))
+			print result
+		except (KeyboardInterrupt):
+			exit
+def arglist():
+	print 'options: -l lowercase, -lU lower and uppercase, -l1 lower and numerals, -U1 upper and numerals, -lU1 lower, upper, and numerals, --help this list'
+
+args = sys.argv[1:]
+if args:
+	for arg in args:
+		if arg == '-l':
+			lowercase()
+		elif arg == '-lU':
+			lowerupper()
+		elif arg == '-l1':
+			lowernum()
+		elif arg == '-U1':
+			uppernum()
+		elif arg == '-lU1':
+			loweruppernum()
+		elif arg == '--help':
+			arglist()
+else:
+	arglist()
