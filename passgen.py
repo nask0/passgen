@@ -1,4 +1,4 @@
-#Passgen 0.3#
+#passgen#
 import sys, random, string
 
 def lowercase():
@@ -72,9 +72,9 @@ if args:
 		elif arg == '-C':
 			while True:
 				try:
-					char_set = sys.argv[2:]
-					char_len = sys.argv[3:]
-					result = ''.join(random.sample(char_set*len(char_set), char_len))
+					char_set = sys.argv[2]
+					char_len = sys.argv[3]
+					result = ''.join([random.choice(char_set) for _ in range(int(char_len))])
 					print result
 				except (ValueError):
 					print('ValueError: sample larger than population')
