@@ -17,3 +17,5 @@ argument switches are as followed
 -lU lowercase + uppercase ascii
 <br>
 -lU1 lowercase + uppercase ascii + digits
+
+This application will be updated with new features as needed.
